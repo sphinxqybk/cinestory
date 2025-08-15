@@ -1,37 +1,52 @@
+// vite.config.ts
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'path'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-// https://vitejs.dev/config/
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+/** แก้ import ที่เผลอเขียนเป็น "@radix-ui/xxx@1.1.2" ให้กลายเป็น "@radix-ui/xxx" */
+function fixRadixVersionedImports() {
+  return {
+    name: 'fix-radix-versioned-imports',
+    enforce: 'pre' as const,
+    resolveId(this: any, source: string, importer: string | undefined, opts: any) {
+      const m = /^(@radix-ui\/[^@]+)@[\d].*/.exec(source)
+      if (m) {
+        return this.resolve(m[1], importer, { ...opts, skipSelf: true })
+      }
+      return null
+    }
+  }
+}
+
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), fixRadixVersionedImports()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      '@/components': path.resolve(__dirname, './components'),
-      '@/utils': path.resolve(__dirname, './utils'),
-      '@/styles': path.resolve(__dirname, './styles'),
-    },
+      // ใช้ @ ชี้ไป src โฟลเดอร์เดียวพอ (ไม่ต้องซ้อน '@/components' ฯลฯ)
+      '@': path.resolve(__dirname, 'src')
+    }
   },
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: 'terser',
     target: 'esnext',
+    // ใช้ esbuild minify (ไม่ต้องติดตั้ง terser)
+    minify: 'esbuild',
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          ui: ['lucide-react', 'clsx', 'tailwind-merge'],
-        },
-      },
-    },
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
+          ui: ['lucide-react', 'clsx', 'tailwind-merge']
+        }
+      }
+    }
+  },
+  // ตัด console/debugger ด้วย esbuild
+  esbuild: {
+    drop: ['console', 'debugger']
   },
   server: {
     port: 3000,
@@ -40,22 +55,22 @@ export default defineConfig({
       '/api': {
         target: 'https://plqwkmrvwuagdymsqeqe.supabase.co/functions/v1/make-server-b27e4aa1',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api'),
+        rewrite: (p) => p.replace(/^\/api/, '/api')
       },
       '/health': {
         target: 'https://plqwkmrvwuagdymsqeqe.supabase.co/functions/v1/make-server-b27e4aa1',
-        changeOrigin: true,
-      },
-    },
+        changeOrigin: true
+      }
+    }
   },
   preview: {
     port: 3000,
-    host: true,
+    host: true
   },
   define: {
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'lucide-react'],
-  },
+    include: ['react', 'react-dom', 'lucide-react', '@radix-ui/react-slot']
+  }
 })
