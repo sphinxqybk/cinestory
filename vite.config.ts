@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-/** แก้ import ที่เผลอเขียนเป็น "@radix-ui/xxx@1.1.2" ให้กลายเป็น "@radix-ui/xxx" */
+/** แก้ import ที่เผลอเขียนเป็น "@radix-ui/xxx" ให้กลายเป็น "@radix-ui/xxx" */
 function fixRadixVersionedImports() {
   return {
     name: 'fix-radix-versioned-imports',
