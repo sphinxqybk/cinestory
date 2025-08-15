@@ -78,31 +78,16 @@
     "npm": ">=10.0.0"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,md,yml,yaml}": [
-      "prettier --write"
-    ]
+    "*.{ts,tsx}": ["eslint --fix", "prettier --write"],
+    "*.{json,md,yml,yaml}": ["prettier --write"]
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": [
-      "<rootDir>/src/setupTests.ts"
-    ],
+    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.ts"],
     "moduleNameMapper": {
       "\\.(css|less|scss|sass)$": "identity-obj-proxy"
     },
@@ -113,12 +98,7 @@
       "!src/vite-env.d.ts"
     ],
     "coverageThreshold": {
-      "global": {
-        "branches": 80,
-        "functions": 80,
-        "lines": 80,
-        "statements": 80
-      }
+      "global": { "branches": 80, "functions": 80, "lines": 80, "statements": 80 }
     }
   },
   "keywords": [
@@ -134,11 +114,6 @@
   "author": "CineStory Team",
   "license": "Commercial",
   "homepage": "https://cinestory.app",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cinestory/cinestory-suite.git"
-  },
-  "bugs": {
-    "url": "https://github.com/cinestory/cinestory-suite/issues"
-  }
+  "repository": { "type": "git", "url": "https://github.com/cinestory/cinestory-suite.git" },
+  "bugs": { "url": "https://github.com/cinestory/cinestory-suite/issues" }
 }
