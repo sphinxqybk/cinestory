@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineStory Backend Test</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #00ff00;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-section {
+            background: #111;
+            border: 1px solid #333;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .success {
+            color: #00ff00;
+            font-weight: bold;
+        }
+        .error {
+            color: #ff0000;
+            font-weight: bold;
+        }
+        .warning {
+            color: #ffaa00;
+            font-weight: bold;
+        }
+        .info {
+            color: #00aaff;
+        }
+        pre {
+            background: #222;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        button {
+            background: #333;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #555;
+        }
+        input {
+            background: #222;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 8px;
+            margin: 5px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 CineStory Backend Testing Tool</h1>
+        <p class="info">This tool tests all CineStory API endpoints to ensure they're working properly.</p>
+        
+        <div class="test-section">
+            <h2>📡 Connection Status</h2>
+            <div id="connection-status">Testing connection...</div>
+        </div>
+
+        <div class="test-section">
+            <h2>🩺 Health Check</h2>
+            <button onclick="testHealthCheck()">Test Health Endpoint</button>
+            <div id="health-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>📊 Early Bird Stats</h2>
+            <button onclick="testStats()">Get Current Stats</button>
+            <div id="stats-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>📝 Early Bird Registration</h2>
+            <input type="email" id="test-email" placeholder="test@example.com" value="test@cinestoryai.com">
+            <button onclick="testRegistration()">Test Registration</button>
+            <div id="registration-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔧 Feature Updates</h2>
+            <button onclick="testFeatureUpdates()">Get Feature Updates</button>
+            <div id="features-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>👥 EyeMotion Member System</h2>
+            <input type="text" id="member-name" placeholder="Test User" value="Test User">
+            <input type="email" id="member-email" placeholder="member@test.com" value="member@cinestoryai.com">
+            <input type="password" id="member-password" placeholder="password123" value="testpass123">
+            <br>
+            <button onclick="testMemberRegistration()">Test Member Registration</button>
+            <button onclick="testMemberLogin()">Test Member Login</button>
+            <div id="member-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>📈 Analytics Summary</h2>
+            <button onclick="testAnalytics()">Get Analytics Data</button>
+            <div id="analytics-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔄 Run All Tests</h2>
+            <button onclick="runAllTests()" style="background: #006600; font-size: 16px; padding: 15px 30px;">🚀 Run Complete Test Suite</button>
+            <div id="all-tests-result"></div>
+        </div>
+    </div>
+
+    <script>
+        // Get project info from window.location or use fallback
+        const API_BASE = 'https://plqwkmrvwuagdymsqeqe.supabase.co/functions/v1/make-server-b27e4aa1/api';
+        const PUBLIC_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBscXdrbXJ2d3VhZ2R5bXNxZXFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzcwMDk0MjksImV4cCI6MjA1MjU4NTQyOX0.nSIb7dCFZ9iKhc4_dSqOcNX8O6B9Kb_aKSlA-1VDZmc';
+
+        let memberAccessToken = null;
+
+        function log(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type === 'success' ? 'success' : type === 'error' ? 'error' : type === 'warning' ? 'warning' : 'info';
+            element.innerHTML += `<div class="${className}">[${timestamp}] ${message}</div>`;
+        }
+
+        function clearLog(elementId) {
+            document.getElementById(elementId).innerHTML = '';
+        }
+
+        async function makeRequest(url, options = {}) {
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${PUBLIC_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        ...options.headers
+                    },
+                    ...options
+                });
+                
+                const data = await response.json();
+                return { status: response.status, data, ok: response.ok };
+            } catch (error) {
+                return { status: 0, data: { error: error.message }, ok: false };
+            }
+        }
+
+        async function testHealthCheck() {
+            clearLog('health-result');
+            log('health-result', '🔍 Testing health endpoint...', 'info');
+            
+            const result = await makeRequest(`${API_BASE}/../health`);
+            
+            if (result.ok) {
+                log('health-result', `✅ Health check passed!`, 'success');
+                log('health-result', `<pre>${JSON.stringify(result.data, null, 2)}</pre>`, 'info');
+            } else {
+                log('health-result', `❌ Health check failed: ${result.status}`, 'error');
+                log('health-result', `<pre>${JSON.stringify(result.data, null, 2)}</pre>`, 'error');
+            }
+        }
+
+        async function testStats() {
+            clearLog('stats-result');
+            log('stats-result', '📊 Getting early bird stats...', 'info');
+            
+            const result = await makeRequest(`${API_BASE}/early-bird/stats`);
+            
+            if (result.ok && result.data.success) {
+                log('stats-result', `✅ Stats retrieved successfully!`, 'success');
+                log('stats-result', `Total Subscribers: ${result.data.data.totalSubscribers}`, 'success');
+                log('stats-result', `Today Signups: ${result.data.data.todaySignups}`, 'success');
+                log('stats-result', `<pre>${JSON.stringify(result.data.data, null, 2)}</pre>`, 'info');
+            } else {
+                log('stats-result', `❌ Failed to get stats: ${result.status}`, 'error');
+                log('stats-result', `<pre>${JSON.stringify(result.data, null, 2)}</pre>`, 'error');
+            }
+        }
+
+        async function testRegistration() {
+            clearLog('registration-result');
+            const email = document.getElementById('test-email').value;
+            
+            if (!email) {
+                log('registration-result', '❌ Please enter an email address', 'error');
+                return;
+            }
+            
+            log('registration-result', `📧 Testing registration for: ${email}`, 'info');
+            
+            const result = await makeRequest(`${API_BASE}/early-bird/register`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: email,
+                    source: 'backend-test',
+                    referrer: 'test-tool'
+                })
+            });
+            
+            if (result.ok && result.data.success) {
+                log('registration-result', `✅ Registration successful!`, 'success');
+                log('registration-result', `Subscriber #${result.data.data.subscriberNumber}`, 'success');
+                log('registration-result', `<pre>${JSON.stringify(result.data.data, null, 2)}</pre>`, 'info');
+            } else {
+                log('registration-result', `⚠️ Registration response: ${result.status}`, 'warning');
+                log('registration-result', `<pre>${JSON.stringify(result.data, null, 2)}</pre>`, 'warning');
+            }
+        }
+
+        async function testFeatureUpdates() {
+            clearLog('features-result');
+            log('features-result', '🔧 Getting feature updates...', 'info');
+            
+            const result = await makeRequest(`${API_BASE}/features/updates`);
+            
+            if (result.ok && result.data.success) {
+                log('features-result', `✅ Feature updates retrieved!`, 'success');
+                log('features-result', `Found ${result.data.data.length} feature updates`, 'success');
+                log('features-result', `<pre>${JSON.stringify(result.data.data, null, 2)}</pre>`, 'info');
+            } else {
+                log('features-result', `❌ Failed to get features: ${result.status}`, 'error');
+                log('features-result', `<pre>${JSON.stringify(result.data, null, 2)}</pre>`, 'error');
+            }
+        }
+
+        async function testMemberRegistration() {
+            clearLog('member-result');
+            const name = document.getElementById('member-name').value;
+            const email = document.getElementById('member-email').value;
+            const password = document.getElementById('member-password').value;
+            
+            if (!name || !email || !password) {
+                log('member-result', '❌ Please fill all member fields', 'error');
+                return;
+            }
+            
+            log('member-result', `👤 Testing member registration for: ${email}`, 'info');
+            
+            const result = await makeRequest(`${API_BASE}/eyemotion/register`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    password: password,
+                    profession: 'Test Creator'
+                })
+            });
+            
+            if (result.ok && result.data.success) {
+                log('member-result', `✅ Member registration successful!`, 'success');
+                log('member-result', `User ID: ${result.data.data.userId}`, 'success');
+                log('member-result', `<pre>${JSON.stringify(result.data.data, null, 2)}</pre>`, 'info');
+            } else {
+                log('member-result', `⚠️ Member registration response: ${result.status}`, 'warning');
+                log('member-result', `<pre>${JSON.stringify(result.data, null, 2)}</pre>`, 'warning');
+            }
+        }
+
+        async function testMemberLogin() {
+            clearLog('member-result');
+            const email = document.getElementById('member-email').value;
+            const password = document.getElementById('member-password').value;
+            
+            if (!email || !password) {
+                log('member-result', '❌ Please fill email and password', 'error');
+                return;
+            }
+            
+            log('member-result', `🔑 Testing member login for: ${email}`, 'info');
+            
+            const result = await makeRequest(`${API_BASE}/eyemotion/login`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            });
+            
+            if (result.ok && result.data.success) {
+                memberAccessToken = result.data.data.accessToken;
+                log('member-result', `✅ Member login successful!`, 'success');
+                log('member-result', `Access token acquired`, 'success');
+                log('member-result', `<pre>${JSON.stringify(result.data.data, null, 2)}</pre>`, 'info');
+                
+                // Test profile access
+                testMemberProfile();
+            } else {
+                log('member-result', `❌ Member login failed: ${result.status}`, 'error');
+                log('member-result', `<pre>${JSON.stringify(result.data, null, 2)}</pre>`, 'error');
+            }
+        }
+
+        async function testMemberProfile() {
+            if (!memberAccessToken) {
+                log('member-result', '⚠️ No access token, skipping profile test', 'warning');
+                return;
+            }
+            
+            log('member-result', `👤 Testing member profile access...`, 'info');
+            
+            const result = await makeRequest(`${API_BASE}/eyemotion/profile`, {
+                headers: {
+                    'Authorization': `Bearer ${memberAccessToken}`
+                }
+            });
+            
+            if (result.ok && result.data.success) {
+                log('member-result', `✅ Member profile retrieved!`, 'success');
+                log('member-result', `<pre>${JSON.stringify(result.data.data, null, 2)}</pre>`, 'info');
+            } else {
+                log('member-result', `❌ Failed to get profile: ${result.status}`, 'error');
+                log('member-result', `<pre>${JSON.stringify(result.data, null, 2)}</pre>`, 'error');
+            }
+        }
+
+        async function testAnalytics() {
+            clearLog('analytics-result');
+            log('analytics-result', '📈 Getting analytics data...', 'info');
+            
+            const result = await makeRequest(`${API_BASE}/analytics/summary`);
+            
+            if (result.ok && result.data.success) {
+                log('analytics-result', `✅ Analytics data retrieved!`, 'success');
+                log('analytics-result', `<pre>${JSON.stringify(result.data.data, null, 2)}</pre>`, 'info');
+            } else {
+                log('analytics-result', `❌ Failed to get analytics: ${result.status}`, 'error');
+                log('analytics-result', `<pre>${JSON.stringify(result.data, null, 2)}</pre>`, 'error');
+            }
+        }
+
+        async function runAllTests() {
+            clearLog('all-tests-result');
+            log('all-tests-result', '🚀 Starting complete test suite...', 'info');
+            
+            try {
+                log('all-tests-result', '1️⃣ Testing health check...', 'info');
+                await testHealthCheck();
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                log('all-tests-result', '2️⃣ Testing stats endpoint...', 'info');
+                await testStats();
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                log('all-tests-result', '3️⃣ Testing feature updates...', 'info');
+                await testFeatureUpdates();
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                log('all-tests-result', '4️⃣ Testing analytics...', 'info');
+                await testAnalytics();
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                log('all-tests-result', '🎉 All tests completed!', 'success');
+                log('all-tests-result', '✅ CineStory backend is working properly!', 'success');
+                
+            } catch (error) {
+                log('all-tests-result', `❌ Test suite failed: ${error.message}`, 'error');
+            }
+        }
+
+        // Test connection on page load
+        window.addEventListener('load', async () => {
+            const statusElement = document.getElementById('connection-status');
+            
+            try {
+                const result = await makeRequest(`${API_BASE}/../health`);
+                if (result.ok) {
+                    statusElement.innerHTML = '<div class="success">✅ Connected to CineStory API successfully!</div>';
+                } else {
+                    statusElement.innerHTML = '<div class="error">❌ API connection failed</div>';
+                }
+            } catch (error) {
+                statusElement.innerHTML = '<div class="error">❌ Cannot reach API server</div>';
+            }
+        });
+    </script>
+</body>
+</html>

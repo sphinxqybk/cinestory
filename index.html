@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>CineStory AI - Professional AI Video Editing Platform</title>
+    <meta name="title" content="CineStory AI - Professional AI Video Editing Platform" />
+    <meta name="description" content="The future of video editing with AI-powered tools. Professional scene detection, color grading, and audio enhancement. Join 15,000+ creators in the early bird program." />
+    <meta name="keywords" content="AI video editing, professional video editor, CineStory, AI tools, video production, film editing, content creation" />
+    <meta name="author" content="CineStory Team" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.cinestoryai.com" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.cinestoryai.com/" />
+    <meta property="og:title" content="CineStory AI - The Future of Video Editing" />
+    <meta property="og:description" content="Revolutionary AI-powered video editing platform. Professional tools for creators, filmmakers, and content producers. Join the early bird program today!" />
+    <meta property="og:image" content="https://www.cinestoryai.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="CineStory AI" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.cinestoryai.com/" />
+    <meta property="twitter:title" content="CineStory AI - Professional AI Video Editing" />
+    <meta property="twitter:description" content="The future of video editing is here. AI-powered professional tools for creators and filmmakers. Join 15,000+ early birds!" />
+    <meta property="twitter:image" content="https://www.cinestoryai.com/twitter-card.jpg" />
+    <meta property="twitter:creator" content="@cinestoryai" />
+    <meta property="twitter:site" content="@cinestoryai" />
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#000000" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="CineStory AI" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Sukhumvit+Set:wght@300;400;500;600;700;800&display=swap" as="style" />
+    <link rel="preload" href="/styles/globals.css" as="style" />
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//plqwkmrvwuagdymsqeqe.supabase.co" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://plqwkmrvwuagdymsqeqe.supabase.co" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "CineStory AI",
+      "description": "Professional AI-powered video editing platform",
+      "url": "https://www.cinestoryai.com",
+      "applicationCategory": "VideoEditingApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "category": "EarlyAccess",
+        "priceCurrency": "USD",
+        "price": "0",
+        "description": "Early bird access with 50% lifetime discount"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "CineStory Team",
+        "url": "https://www.cinestoryai.com"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "1247",
+        "bestRating": "5"
+      },
+      "featureList": [
+        "AI Auto-Cut",
+        "Intelligent Color Grading", 
+        "Audio Enhancement",
+        "Real-time Collaboration",
+        "8K Export Support",
+        "Voice Commands"
+      ]
+    }
+    </script>
+    
+    <!-- Google Analytics (replace with your GA4 ID) -->
+    <!-- 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    -->
+    
+    <!-- Critical CSS Inline (for above-the-fold) -->
+    <style>
+      /* Critical CSS for loading state */
+      body {
+        margin: 0;
+        font-family: 'Sukhumvit Set', system-ui, -apple-system, sans-serif;
+        background: #000000;
+        color: #ffffff;
+        overflow-x: hidden;
+      }
+      
+      .loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #0a0a0f 0%, #050508 50%, #000000 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      
+      .loading-spinner {
+        width: 60px;
+        height: 60px;
+        border: 3px solid rgba(255, 255, 255, 0.1);
+        border-top: 3px solid #6bc7ff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .loading-text {
+        margin-top: 20px;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 16px;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading">
+      <div style="text-align: center;">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">🎬 Loading CineStory AI...</div>
+      </div>
+    </div>
+    
+    <!-- App Root -->
+    <div id="root"></div>
+    
+    <!-- Remove loading screen when app loads -->
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const loading = document.getElementById('loading');
+          if (loading) {
+            loading.style.opacity = '0';
+            loading.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => loading.remove(), 500);
+          }
+        }, 1000);
+      });
+    </script>
+    
+    <!-- Main App Script -->
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('SW registered: ', registration);
+            })
+            .catch(function(registrationError) {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,729 @@
+@import url('https://fonts.googleapis.com/css2?family=Sukhumvit+Set:wght@300;400;500;600;700;800&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 14px;
+  --background: #ffffff;
+  --foreground: oklch(0.145 0 0);
+  --card: #ffffff;
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #030213;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.0058 264.53);
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: #030213;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* CineStory Studio Black Theme */
+  --studio-black-deepest: #000000;      /* Pure black */
+  --studio-black-deep: #050508;         /* Very deep black */
+  --studio-black-medium: #0a0a0f;       /* Medium black */
+  --studio-black-light: #12121a;        /* Lighter black */
+  --studio-black-surface: #1a1a24;      /* Surface black */
+  
+  /* Light Stroke Typography Colors */
+  --light-stroke-primary: #ffffff;      /* Pure white strokes */
+  --light-stroke-secondary: #e2e8f0;    /* Light gray strokes */
+  --light-stroke-accent: #64b5f6;       /* Blue accent strokes */
+  --light-stroke-highlight: #ffd700;    /* Gold highlight strokes */
+  --light-stroke-danger: #ff6b6b;       /* Red danger strokes */
+  --light-stroke-success: #51cf66;      /* Green success strokes */
+  
+  /* Dimensional Depth Colors */
+  --depth-shadow-1: rgba(0, 0, 0, 0.8);
+  --depth-shadow-2: rgba(0, 0, 0, 0.6);
+  --depth-shadow-3: rgba(0, 0, 0, 0.4);
+  --depth-highlight-1: rgba(255, 255, 255, 0.1);
+  --depth-highlight-2: rgba(255, 255, 255, 0.05);
+  --depth-highlight-3: rgba(255, 255, 255, 0.02);
+  
+  /* Light Glow Effects */
+  --glow-primary: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);
+  --glow-accent: 0 0 10px rgba(100, 181, 246, 0.4), 0 0 20px rgba(100, 181, 246, 0.3), 0 0 30px rgba(100, 181, 246, 0.2);
+  --glow-highlight: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.3);
+  
+  /* CineStory Film Ecosystem Colors */
+  --cinestory-blue: #6bc7ff;
+  --cinestory-magenta: #ff5cc7;
+  --cinestory-cyan: #00fff2;
+  --cinestory-nebula-1: #8a7cff;
+  --cinestory-nebula-2: #5ad1ff;
+  --cinestory-nebula-3: #c27dff;
+  --cinestory-audio-wave: #a7e4ff;
+  --cinestory-audio-locator: #5fc6ff;
+  --cinestory-teal: #7fd9c8;
+  --cinestory-gray: #bfc7d1;
+  
+  /* Film Ecosystem Dark Theme */
+  --cinestory-bg-primary: #0b0b0f;
+  --cinestory-bg-secondary: #0e1013;
+  --cinestory-bg-panel: rgba(14, 16, 19, 0.9);
+  --cinestory-bg-panel-hover: rgba(14, 16, 19, 0.95);
+  
+  /* Holographic Effects */
+  --hologram-grid-opacity: 0.12;
+  --hologram-stripe-opacity: 0.08;
+  --hologram-band-opacity: 0.16;
+}
+
+.dark {
+  --background: var(--studio-black-deepest);
+  --foreground: var(--light-stroke-primary);
+  --card: var(--studio-black-medium);
+  --card-foreground: var(--light-stroke-primary);
+  --popover: var(--studio-black-light);
+  --popover-foreground: var(--light-stroke-primary);
+  --primary: var(--light-stroke-primary);
+  --primary-foreground: var(--studio-black-deepest);
+  --secondary: var(--studio-black-surface);
+  --secondary-foreground: var(--light-stroke-secondary);
+  --muted: var(--studio-black-light);
+  --muted-foreground: var(--light-stroke-secondary);
+  --accent: var(--studio-black-surface);
+  --accent-foreground: var(--light-stroke-accent);
+  --destructive: var(--light-stroke-danger);
+  --destructive-foreground: var(--studio-black-deepest);
+  --border: var(--studio-black-surface);
+  --input: var(--studio-black-light);
+  --ring: var(--light-stroke-accent);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: var(--studio-black-medium);
+  --sidebar-foreground: var(--light-stroke-primary);
+  --sidebar-primary: var(--light-stroke-accent);
+  --sidebar-primary-foreground: var(--studio-black-deepest);
+  --sidebar-accent: var(--studio-black-surface);
+  --sidebar-accent-foreground: var(--light-stroke-primary);
+  --sidebar-border: var(--studio-black-surface);
+  --sidebar-ring: var(--light-stroke-accent);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* CineStory Theme Variables */
+  --color-cinestory-blue: var(--cinestory-blue);
+  --color-cinestory-magenta: var(--cinestory-magenta);
+  --color-cinestory-cyan: var(--cinestory-cyan);
+  --color-cinestory-nebula-1: var(--cinestory-nebula-1);
+  --color-cinestory-nebula-2: var(--cinestory-nebula-2);
+  --color-cinestory-nebula-3: var(--cinestory-nebula-3);
+  --color-cinestory-audio-wave: var(--cinestory-audio-wave);
+  --color-cinestory-audio-locator: var(--cinestory-audio-locator);
+  --color-cinestory-teal: var(--cinestory-teal);
+  --color-cinestory-gray: var(--cinestory-gray);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Sukhumvit Set', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+/* ============================================================================= */
+/* CORE ANIMATION KEYFRAMES - Essential animations that MUST work */
+/* ============================================================================= */
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 0.5; 
+    transform: scale(1.05); 
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% { 
+    transform: translateY(0); 
+  }
+  40%, 43% { 
+    transform: translateY(-8px); 
+  }
+  70% { 
+    transform: translateY(-4px); 
+  }
+  90% { 
+    transform: translateY(-2px); 
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slideInUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes slideInDown {
+  from { 
+    opacity: 0; 
+    transform: translateY(-20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes zoomIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.8); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+/* ============================================================================= */
+/* TAILWIND ANIMATION UTILITIES - Map Tailwind classes to keyframes */
+/* ============================================================================= */
+
+@layer utilities {
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+  
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-bounce {
+    animation: bounce 1s infinite;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-fade-out {
+    animation: fadeOut 0.5s ease-in-out;
+  }
+  
+  .animate-slide-in-up {
+    animation: slideInUp 0.5s ease-out;
+  }
+  
+  .animate-slide-in-down {
+    animation: slideInDown 0.5s ease-out;
+  }
+  
+  .animate-zoom-in {
+    animation: zoomIn 0.3s ease-out;
+  }
+}
+
+/* ============================================================================= */
+/* STUDIO BLACK DIMENSIONAL EFFECTS & LIGHT TYPOGRAPHY */
+/* ============================================================================= */
+
+/* Light Stroke Typography Effects */
+@keyframes lightStroke {
+  0%, 100% { 
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor;
+  }
+  50% { 
+    text-shadow: 
+      0 0 2px currentColor,
+      0 0 5px currentColor,
+      0 0 8px currentColor;
+  }
+}
+
+@keyframes dimensionalGlow {
+  0%, 100% { 
+    box-shadow: 
+      inset 0 1px 0 var(--depth-highlight-1),
+      0 1px 2px var(--depth-shadow-1),
+      0 4px 8px var(--depth-shadow-2),
+      0 8px 16px var(--depth-shadow-3);
+  }
+  50% { 
+    box-shadow: 
+      inset 0 1px 0 var(--depth-highlight-2),
+      0 2px 4px var(--depth-shadow-1),
+      0 6px 12px var(--depth-shadow-2),
+      0 12px 24px var(--depth-shadow-3);
+  }
+}
+
+@keyframes studioDepth {
+  0% { 
+    background: linear-gradient(135deg, var(--studio-black-light) 0%, var(--studio-black-medium) 50%, var(--studio-black-deep) 100%);
+  }
+  50% { 
+    background: linear-gradient(135deg, var(--studio-black-medium) 0%, var(--studio-black-deep) 50%, var(--studio-black-deepest) 100%);
+  }
+  100% { 
+    background: linear-gradient(135deg, var(--studio-black-light) 0%, var(--studio-black-medium) 50%, var(--studio-black-deep) 100%);
+  }
+}
+
+/* Studio Black Typography Classes */
+@layer utilities {
+  /* Light Glow Text (solid colors with glow effects) */
+  .text-light-glow {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.5),
+      0 0 20px rgba(255, 255, 255, 0.3),
+      0 0 30px rgba(255, 255, 255, 0.2);
+    font-weight: 400;
+  }
+  
+  .text-light-glow-accent {
+    color: rgba(100, 181, 246, 0.95);
+    text-shadow: 
+      0 0 10px rgba(100, 181, 246, 0.6),
+      0 0 20px rgba(100, 181, 246, 0.4),
+      0 0 30px rgba(100, 181, 246, 0.3);
+    font-weight: 400;
+  }
+  
+  .text-light-glow-highlight {
+    color: rgba(255, 215, 0, 0.95);
+    text-shadow: 
+      0 0 10px rgba(255, 215, 0, 0.7),
+      0 0 20px rgba(255, 215, 0, 0.5),
+      0 0 30px rgba(255, 215, 0, 0.3);
+    font-weight: 500;
+  }
+  
+  /* Vibrant Solid Colors with Enhanced Glow */
+  .text-light-stroke {
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 
+      0 0 15px rgba(255, 255, 255, 0.6),
+      0 0 25px rgba(255, 255, 255, 0.4),
+      0 0 35px rgba(255, 255, 255, 0.3);
+    font-weight: 500;
+  }
+  
+  .text-light-stroke-accent {
+    color: rgba(100, 181, 246, 0.98);
+    text-shadow: 
+      0 0 15px rgba(100, 181, 246, 0.7),
+      0 0 25px rgba(100, 181, 246, 0.5),
+      0 0 35px rgba(100, 181, 246, 0.3);
+    font-weight: 500;
+  }
+  
+  .text-light-stroke-highlight {
+    color: rgba(255, 215, 0, 0.98);
+    text-shadow: 
+      0 0 15px rgba(255, 215, 0, 0.8),
+      0 0 25px rgba(255, 215, 0, 0.6),
+      0 0 35px rgba(255, 215, 0, 0.4);
+    font-weight: 600;
+  }
+  
+  /* CineStory Brand Colors - Bright & Vibrant */
+  .text-cinestory-magenta {
+    color: rgba(255, 92, 199, 0.98);
+    text-shadow: 
+      0 0 15px rgba(255, 92, 199, 0.7),
+      0 0 25px rgba(255, 92, 199, 0.5),
+      0 0 35px rgba(255, 92, 199, 0.3);
+    font-weight: 600;
+  }
+  
+  .text-cinestory-cyan {
+    color: rgba(0, 255, 242, 0.98);
+    text-shadow: 
+      0 0 15px rgba(0, 255, 242, 0.7),
+      0 0 25px rgba(0, 255, 242, 0.5),
+      0 0 35px rgba(0, 255, 242, 0.3);
+    font-weight: 600;
+  }
+  
+  .text-cinestory-blue {
+    color: rgba(107, 199, 255, 0.98);
+    text-shadow: 
+      0 0 15px rgba(107, 199, 255, 0.7),
+      0 0 25px rgba(107, 199, 255, 0.5),
+      0 0 35px rgba(107, 199, 255, 0.3);
+    font-weight: 600;
+  }
+  
+  .text-cinestory-teal {
+    color: rgba(127, 217, 200, 0.98);
+    text-shadow: 
+      0 0 15px rgba(127, 217, 200, 0.7),
+      0 0 25px rgba(127, 217, 200, 0.5),
+      0 0 35px rgba(127, 217, 200, 0.3);
+    font-weight: 600;
+  }
+  
+  /* Animated Light Effects */
+  .animate-light-stroke {
+    animation: lightStroke 3s ease-in-out infinite;
+  }
+  
+  .animate-dimensional-glow {
+    animation: dimensionalGlow 4s ease-in-out infinite;
+  }
+  
+  .animate-studio-depth {
+    animation: studioDepth 8s ease-in-out infinite;
+  }
+  
+  /* Studio Black Backgrounds with Dimension */
+  .bg-studio-black-deepest {
+    background-color: var(--studio-black-deepest);
+  }
+  
+  .bg-studio-black-deep {
+    background-color: var(--studio-black-deep);
+  }
+  
+  .bg-studio-black-medium {
+    background-color: var(--studio-black-medium);
+  }
+  
+  .bg-studio-black-light {
+    background-color: var(--studio-black-light);
+  }
+  
+  .bg-studio-black-surface {
+    background-color: var(--studio-black-surface);
+  }
+  
+  /* Dimensional Gradient Backgrounds */
+  .bg-studio-gradient-depth {
+    background: linear-gradient(135deg, var(--studio-black-light) 0%, var(--studio-black-medium) 50%, var(--studio-black-deep) 100%);
+  }
+  
+  .bg-studio-gradient-deep {
+    background: linear-gradient(135deg, var(--studio-black-medium) 0%, var(--studio-black-deep) 50%, var(--studio-black-deepest) 100%);
+  }
+  
+  .bg-studio-gradient-surface {
+    background: linear-gradient(135deg, var(--studio-black-surface) 0%, var(--studio-black-light) 50%, var(--studio-black-medium) 100%);
+  }
+  
+  /* Dimensional Shadows */
+  .shadow-studio-depth-1 {
+    box-shadow: 
+      inset 0 1px 0 var(--depth-highlight-1),
+      0 1px 2px var(--depth-shadow-1),
+      0 4px 8px var(--depth-shadow-2);
+  }
+  
+  .shadow-studio-depth-2 {
+    box-shadow: 
+      inset 0 1px 0 var(--depth-highlight-1),
+      0 2px 4px var(--depth-shadow-1),
+      0 6px 12px var(--depth-shadow-2),
+      0 12px 24px var(--depth-shadow-3);
+  }
+  
+  .shadow-studio-depth-3 {
+    box-shadow: 
+      inset 0 2px 0 var(--depth-highlight-1),
+      inset 0 1px 0 var(--depth-highlight-2),
+      0 4px 6px var(--depth-shadow-1),
+      0 8px 16px var(--depth-shadow-2),
+      0 16px 32px var(--depth-shadow-3);
+  }
+  
+  /* Borders with Light Effects */
+  .border-light-stroke {
+    border: 1px solid var(--light-stroke-primary);
+    box-shadow: 0 0 4px var(--light-stroke-primary);
+  }
+  
+  .border-light-stroke-accent {
+    border: 1px solid var(--light-stroke-accent);
+    box-shadow: 0 0 4px var(--light-stroke-accent);
+  }
+  
+  /* Studio Card Effects */
+  .card-studio-depth {
+    background: var(--studio-black-medium);
+    border: 1px solid var(--studio-black-surface);
+    box-shadow: 
+      inset 0 1px 0 var(--depth-highlight-1),
+      0 2px 4px var(--depth-shadow-1),
+      0 6px 12px var(--depth-shadow-2);
+    backdrop-filter: blur(8px);
+  }
+  
+  .card-studio-depth:hover {
+    background: var(--studio-black-light);
+    border-color: var(--light-stroke-accent);
+    box-shadow: 
+      inset 0 1px 0 var(--depth-highlight-2),
+      0 4px 8px var(--depth-shadow-1),
+      0 12px 24px var(--depth-shadow-2),
+      0 0 20px var(--light-stroke-accent);
+    transform: translateY(-2px);
+  }
+  
+  /* Button Studio Effects */
+  .btn-studio-light {
+    background: linear-gradient(135deg, var(--studio-black-surface) 0%, var(--studio-black-light) 100%);
+    border: 1px solid var(--light-stroke-primary);
+    color: var(--light-stroke-primary);
+    text-shadow: var(--glow-primary);
+    box-shadow: 
+      inset 0 1px 0 var(--depth-highlight-1),
+      0 2px 4px var(--depth-shadow-1);
+  }
+  
+  .btn-studio-light:hover {
+    background: linear-gradient(135deg, var(--studio-black-light) 0%, var(--studio-black-medium) 100%);
+    border-color: var(--light-stroke-accent);
+    color: var(--light-stroke-accent);
+    text-shadow: var(--glow-accent);
+    box-shadow: 
+      inset 0 1px 0 var(--depth-highlight-2),
+      0 4px 8px var(--depth-shadow-1),
+      0 0 16px var(--light-stroke-accent);
+    transform: translateY(-1px);
+  }
+  
+  /* Panel Studio Effects */
+  .panel-studio-depth {
+    background: 
+      linear-gradient(135deg, var(--studio-black-medium) 0%, var(--studio-black-deep) 100%),
+      radial-gradient(circle at 20% 50%, var(--depth-highlight-3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, var(--depth-highlight-3) 0%, transparent 50%);
+    border: 1px solid var(--studio-black-surface);
+    box-shadow: 
+      inset 0 1px 0 var(--depth-highlight-1),
+      inset 0 0 20px var(--depth-highlight-3),
+      0 4px 8px var(--depth-shadow-1),
+      0 8px 16px var(--depth-shadow-2);
+    backdrop-filter: blur(12px);
+  }
+}
+
+/* ============================================================================= */
+/* ENHANCED FILM INDUSTRY INSPIRED ANIMATION KEYFRAMES */
+/* ============================================================================= */
+
+@keyframes filmReel {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes timelineScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-20%); }
+}
+
+@keyframes waveformFlow {
+  0% { stroke-dashoffset: 200; }
+  50% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -200; }
+}
+
+@keyframes nodeConnection {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -140; }
+}
+
+@keyframes audioScan {
+  0% { transform: translateX(-10%); }
+  100% { transform: translateX(120%); }
+}
+
+@keyframes hologramFlicker {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes cinemaProjection {
+  0% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.4; }
+}
+
+/* Custom Film Animation Classes */
+@layer utilities {
+  .custom-film-reel {
+    animation: filmReel 3s linear infinite;
+  }
+  
+  .custom-timeline-scroll {
+    animation: timelineScroll 8s linear infinite;
+  }
+  
+  .custom-hologram {
+    animation: hologramFlicker 2s ease-in-out infinite;
+  }
+  
+  .custom-projection {
+    animation: cinemaProjection 4s ease-in-out infinite;
+  }
+}
+
+/* Typography Animation Effects */
+@keyframes textGlow {
+  0%, 100% { text-shadow: 0 0 5px currentColor; }
+  50% { text-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth Transitions for Interactive Elements */
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* ============================================================================= */
+/* PERFORMANCE OPTIMIZATIONS */
+/* ============================================================================= */
+
+/* Optimize animations for better performance */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
