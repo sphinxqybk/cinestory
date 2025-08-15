@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "build:production": "NODE_ENV=production npm run build",
-    "vercel-build": "npm run build",
+    "build": "vite build",
+    "build:production": "NODE_ENV=production vite build",
+    "vercel-build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "type-check": "tsc --noEmit",
@@ -15,10 +15,11 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "start": "vite preview --port 3000",
-    "start:production": "NODE_ENV=production npm run preview",
+    "start:production": "NODE_ENV=production vite preview --port 3000",
     "deploy": "vercel --prod",
     "deploy:preview": "vercel",
-    "health:check": "node scripts/health-check.js"
+    "health:check": "node scripts/health-check.js",
+    "prepare": "husky install"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -64,6 +65,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/user-event": "^14.4.0",
+    "identity-obj-proxy": "^3.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
     "prettier": "^3.0.0",
@@ -71,36 +73,21 @@
     "docker-compose": "^0.23.19"
   },
   "engines": {
-    "node": ">=18.0.0",
+    "node": "18.x",
     "npm": ">=9.0.0"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,md,yml,yaml}": [
-      "prettier --write"
-    ]
+    "*.{ts,tsx}": ["eslint --fix", "prettier --write"],
+    "*.{json,md,yml,yaml}": ["prettier --write"]
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": [
-      "<rootDir>/src/setupTests.ts"
-    ],
-    "moduleNameMapping": {
+    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.ts"],
+    "moduleNameMapper": {
       "\\.(css|less|scss|sass)$": "identity-obj-proxy"
     },
     "collectCoverageFrom": [
@@ -110,12 +97,7 @@
       "!src/vite-env.d.ts"
     ],
     "coverageThreshold": {
-      "global": {
-        "branches": 80,
-        "functions": 80,
-        "lines": 80,
-        "statements": 80
-      }
+      "global": { "branches": 80, "functions": 80, "lines": 80, "statements": 80 }
     }
   },
   "keywords": [
@@ -131,11 +113,6 @@
   "author": "CineStory Team",
   "license": "Commercial",
   "homepage": "https://cinestory.app",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cinestory/cinestory-suite.git"
-  },
-  "bugs": {
-    "url": "https://github.com/cinestory/cinestory-suite/issues"
-  }
+  "repository": { "type": "git", "url": "https://github.com/cinestory/cinestory-suite.git" },
+  "bugs": { "url": "https://github.com/cinestory/cinestory-suite/issues" }
 }
