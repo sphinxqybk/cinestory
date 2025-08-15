@@ -23,9 +23,9 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.0",
-    "@radix-ui/react-slot": "^1.1.2",
+    "@radix-ui/react-slot": "^1.2.3",
     "axios": "^1.6.0",
-    "class-variance-authority": "^0.7.0",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.0.0",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.0",
@@ -58,7 +58,7 @@
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
     "autoprefixer": "^10.4.14",
-    "docker": "^1.0.0",
+    "docker": "^0.2.14",
     "docker-compose": "^0.23.19",
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
@@ -78,16 +78,31 @@
     "npm": ">=10.0.0"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
-    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "lint-staged": {
-    "*.{ts,tsx}": ["eslint --fix", "prettier --write"],
-    "*.{json,md,yml,yaml}": ["prettier --write"]
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.ts"],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.ts"
+    ],
     "moduleNameMapper": {
       "\\.(css|less|scss|sass)$": "identity-obj-proxy"
     },
@@ -98,7 +113,12 @@
       "!src/vite-env.d.ts"
     ],
     "coverageThreshold": {
-      "global": { "branches": 80, "functions": 80, "lines": 80, "statements": 80 }
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
     }
   },
   "keywords": [
@@ -114,6 +134,11 @@
   "author": "CineStory Team",
   "license": "Commercial",
   "homepage": "https://cinestory.app",
-  "repository": { "type": "git", "url": "https://github.com/cinestory/cinestory-suite.git" },
-  "bugs": { "url": "https://github.com/cinestory/cinestory-suite/issues" }
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cinestory/cinestory-suite.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cinestory/cinestory-suite/issues"
+  }
 }
