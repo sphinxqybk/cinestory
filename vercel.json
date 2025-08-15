@@ -6,13 +6,10 @@
     { "src": "package.json", "use": "@vercel/static-build", "config": { "distDir": "dist" } }
   ],
 
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "https://plqwkmrvwuagdymsqeqe.supabase.co/functions/v1/make-server-b27e4aa1/api/$1"
-    },
-    { "src": "/health", "dest": "https://plqwkmrvwuagdymsqeqe.supabase.co/functions/v1/make-server-b27e4aa1/health" },
-    { "src": "/(.*)", "dest": "/index.html" }
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "https://plqwkmrvwuagdymsqeqe.supabase.co/functions/v1/make-server-b27e4aa1/api/$1" },
+    { "source": "/health", "destination": "https://plqwkmrvwuagdymsqeqe.supabase.co/functions/v1/make-server-b27e4aa1/health" },
+    { "source": "/((?!.*\\.).*)", "destination": "/" } 
   ],
 
   "headers": [
@@ -35,7 +32,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot))",
+      "source": "/(.*)\\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
@@ -44,9 +41,9 @@
 
   "redirects": [
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "has": [{ "type": "host", "value": "cinestoryai.com" }],
-      "destination": "https://www.cinestoryai.com/$1",
+      "destination": "https://www.cinestoryai.com/:path*",
       "permanent": true
     }
   ],
