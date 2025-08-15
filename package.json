@@ -73,8 +73,8 @@
     "docker-compose": "^0.23.19"
   },
   "engines": {
-    "node": "18.x",
-    "npm": ">=9.0.0"
+    "node": "22.x",
+    "npm": ">=10.0.0"
   },
   "browserslist": {
     "production": [">0.2%", "not dead", "not op_mini all"],
